@@ -24,6 +24,8 @@
         .presentation-container {
             width: 90vw;
             max-width: 1200px;
+            height: calc(90vw * 9 / 16);
+            max-height: calc(100vh - 40px);
             aspect-ratio: 16/9;
             background: white;
             border-radius: 20px;
@@ -32,16 +34,32 @@
             position: relative;
         }
 
+        @media (max-width: 1200px) {
+            .presentation-container {
+                width: 95vw;
+                height: calc(95vw * 9 / 16);
+            }
+        }
+
+        @media (min-aspect-ratio: 16/9) {
+            .presentation-container {
+                width: auto;
+                height: calc(100vh - 40px);
+                max-height: none;
+            }
+        }
+
         .slide {
             width: 100%;
             height: 100%;
             position: absolute;
             top: 0;
             left: 0;
-            padding: 60px;
+            padding: clamp(20px, 5vmin, 60px);
             display: none;
             opacity: 0;
             animation: fadeIn 0.6s ease forwards;
+            overflow-y: auto;
         }
 
         .slide.active {
@@ -112,55 +130,55 @@
         }
 
         h1 {
-            font-size: 3.5em;
+            font-size: clamp(1.8rem, 4vmin, 3.5rem);
             color: #667eea;
-            margin-bottom: 20px;
+            margin-bottom: clamp(10px, 2vmin, 20px);
             animation: slideInFromLeft 0.8s ease 0.2s both;
         }
 
         h2 {
-            font-size: 2.5em;
+            font-size: clamp(1.4rem, 3vmin, 2.5rem);
             color: #667eea;
-            margin-bottom: 30px;
+            margin-bottom: clamp(15px, 3vmin, 30px);
             animation: slideInFromLeft 0.8s ease 0.2s both;
         }
 
         .subtitle {
-            font-size: 1.5em;
+            font-size: clamp(1rem, 2vmin, 1.5rem);
             color: #666;
             animation: slideInFromLeft 0.8s ease 0.4s both;
         }
 
         .content-box {
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 20px 0;
+            padding: clamp(15px, 3vmin, 30px);
+            border-radius: clamp(10px, 2vmin, 15px);
+            margin: clamp(10px, 2vmin, 20px) 0;
             animation: bounceIn 0.8s ease 0.4s both;
         }
 
         .highlight-box {
             background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
-            padding: 25px;
-            border-radius: 15px;
-            margin: 20px 0;
+            padding: clamp(15px, 3vmin, 25px);
+            border-radius: clamp(10px, 2vmin, 15px);
+            margin: clamp(10px, 2vmin, 20px) 0;
             border-left: 5px solid #d63031;
             animation: slideInFromRight 0.8s ease 0.6s both;
         }
 
         .success-box {
             background: linear-gradient(135deg, #a8e6cf 0%, #56ab91 100%);
-            padding: 25px;
-            border-radius: 15px;
-            margin: 20px 0;
+            padding: clamp(15px, 3vmin, 25px);
+            border-radius: clamp(10px, 2vmin, 15px);
+            margin: clamp(10px, 2vmin, 20px) 0;
             border-left: 5px solid #00b894;
             animation: slideInFromRight 0.8s ease 0.6s both;
         }
 
         .rule-item {
-            font-size: 1.3em;
-            margin: 15px 0;
-            padding-left: 40px;
+            font-size: clamp(0.9rem, 1.8vmin, 1.3rem);
+            margin: clamp(8px, 1.5vmin, 15px) 0;
+            padding-left: clamp(25px, 4vmin, 40px);
             position: relative;
             animation: slideInFromRight 0.6s ease both;
         }
@@ -186,29 +204,29 @@
         }
 
         .icon {
-            font-size: 4em;
-            margin: 20px 0;
+            font-size: clamp(2.5rem, 5vmin, 4rem);
+            margin: clamp(10px, 2vmin, 20px) 0;
             animation: float 3s ease-in-out infinite;
         }
 
         .merksatz {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 30px;
-            border-radius: 15px;
-            font-size: 1.8em;
+            padding: clamp(15px, 3vmin, 30px);
+            border-radius: clamp(10px, 2vmin, 15px);
+            font-size: clamp(1rem, 2.5vmin, 1.8rem);
             text-align: center;
-            margin: 30px 0;
+            margin: clamp(15px, 3vmin, 30px) 0;
             font-weight: bold;
             animation: pulse 2s ease-in-out infinite;
         }
 
         .navigation {
             position: absolute;
-            bottom: 30px;
-            right: 30px;
+            bottom: clamp(15px, 3vmin, 30px);
+            right: clamp(15px, 3vmin, 30px);
             display: flex;
-            gap: 15px;
+            gap: clamp(8px, 1.5vmin, 15px);
             z-index: 100;
         }
 
@@ -216,10 +234,10 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: clamp(8px, 1.5vmin, 12px) clamp(15px, 3vmin, 25px);
             border-radius: 25px;
             cursor: pointer;
-            font-size: 1em;
+            font-size: clamp(0.8rem, 1.5vmin, 1rem);
             font-weight: bold;
             transition: transform 0.3s, box-shadow 0.3s;
         }
@@ -236,9 +254,9 @@
 
         .slide-counter {
             position: absolute;
-            bottom: 30px;
-            left: 30px;
-            font-size: 1.2em;
+            bottom: clamp(15px, 3vmin, 30px);
+            left: clamp(15px, 3vmin, 30px);
+            font-size: clamp(0.9rem, 1.8vmin, 1.2rem);
             color: #667eea;
             font-weight: bold;
         }
@@ -246,14 +264,14 @@
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 20px;
+            gap: clamp(10px, 2vmin, 20px);
+            margin-top: clamp(10px, 2vmin, 20px);
         }
 
         .card {
             background: white;
-            padding: 20px;
-            border-radius: 10px;
+            padding: clamp(12px, 2.5vmin, 20px);
+            border-radius: clamp(8px, 1.5vmin, 10px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             animation: bounceIn 0.8s ease both;
         }
@@ -264,25 +282,43 @@
         .card:nth-child(4) { animation-delay: 0.7s; }
 
         .card-title {
-            font-size: 1.3em;
+            font-size: clamp(0.9rem, 1.8vmin, 1.3rem);
             color: #667eea;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: clamp(5px, 1vmin, 10px);
         }
 
         .emoji {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-size: clamp(1.5rem, 3vmin, 2.5rem);
+            margin-bottom: clamp(5px, 1vmin, 10px);
         }
 
         ul {
-            margin-left: 20px;
+            margin-left: clamp(10px, 2vmin, 20px);
         }
 
         li {
-            font-size: 1.2em;
-            margin: 10px 0;
+            font-size: clamp(0.85rem, 1.6vmin, 1.2rem);
+            margin: clamp(5px, 1vmin, 10px) 0;
             line-height: 1.6;
+        }
+
+        p {
+            font-size: clamp(0.85rem, 1.6vmin, 1.1rem);
+            line-height: 1.6;
+        }
+
+        .content-box p,
+        .highlight-box p,
+        .success-box p {
+            font-size: clamp(0.9rem, 1.8vmin, 1.3rem);
+            line-height: 1.8;
+        }
+
+        .highlight-box h3,
+        .success-box h3 {
+            font-size: clamp(1rem, 2vmin, 1.5rem);
+            margin-bottom: clamp(8px, 1.5vmin, 15px);
         }
     </style>
 </head>
